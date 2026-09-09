@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'relative inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-slate-950 disabled:opacity-50 disabled:pointer-events-none rounded-xl select-none';
+  const baseStyles = 'relative inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-[#090a0d] disabled:opacity-50 disabled:pointer-events-none rounded-lg select-none';
 
   const sizeStyles = {
     sm: 'px-3.5 py-1.5 text-xs gap-1.5',
@@ -33,11 +33,11 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/35 hover:-translate-y-0.5',
-    glow: 'bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-600 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 border border-white/10',
-    secondary: 'bg-slate-800/80 hover:bg-slate-700/80 text-white border border-slate-700/60 backdrop-blur-sm hover:border-slate-600',
-    outline: 'border border-cyan-500/30 hover:border-cyan-400/80 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300',
-    ghost: 'text-slate-300 hover:text-white hover:bg-white/5',
+    primary: 'bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold shadow-sm hover:-translate-y-0.5',
+    glow: 'bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold shadow-sm hover:-translate-y-0.5',
+    secondary: 'bg-white/[.06] hover:bg-white/[.1] text-white border border-white/10',
+    outline: 'border border-white/15 hover:border-white/30 bg-white/[.02] hover:bg-white/[.06] text-slate-200',
+    ghost: 'text-slate-400 hover:text-white hover:bg-white/[.06]',
   };
 
   const content = (
