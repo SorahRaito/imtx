@@ -1,7 +1,71 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Heart, Menu, X } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Button } from '../common/Button';
 import { Logo } from '../common/Logo';
-const links = [{ name: 'Platform', path: '/features' }, { name: 'Fiyatlar', path: '/pricing' }, { name: 'Hakkında', path: '/about' }, { name: 'İletişim', path: '/contact' }];
-export const Navbar: React.FC = () => { const [open, setOpen] = useState(false); const location = useLocation(); useEffect(() => setOpen(false), [location.pathname]); return <header className="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-[#090a0d]/90 backdrop-blur-xl"><div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-5 sm:px-8"><Logo size="md" /><nav className="hidden items-center gap-1 md:flex">{links.map(link => <NavLink key={link.path} to={link.path} className={({isActive}) => `rounded-lg px-3 py-2 text-sm transition ${isActive ? 'bg-white/[.07] text-white' : 'text-slate-400 hover:text-white'}`}>{link.name}</NavLink>)}</nav><div className="hidden items-center gap-2 md:flex"><Button to="/login" variant="ghost" size="sm">Giriş yap</Button><Button to="/register" variant="primary" size="sm">Başla</Button></div><button className="rounded-lg p-2 text-slate-300 md:hidden" onClick={() => setOpen(!open)} aria-label="Menüyü aç/kapat">{open ? <X /> : <Menu />}</button></div>{open && <div className="border-t border-white/8 bg-[#090a0d] px-5 py-4 md:hidden"><nav className="grid gap-1">{links.map(link => <NavLink key={link.path} to={link.path} className="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[.06]">{link.name}</NavLink>)}<div className="mt-3 grid grid-cols-2 gap-2"><Button to="/login" variant="secondary" size="sm">Giriş yap</Button><Button to="/register" variant="primary" size="sm">Başla</Button></div></nav></div>}</header>; };
+
+const links = [
+  { name: 'Platform', path: '/features' },
+  { name: 'Fiyatlar', path: '/pricing' },
+  { name: 'Hakkında', path: '/about' },
+  { name: 'İletişim', path: '/contact' },
+];
+
+const privateLinkClass = 'rounded-lg px-3 py-2 text-sm font-medium text-sky-300 transition hover:bg-sky-400/10 hover:text-white';
+
+export const Navbar: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => setOpen(false), [location.pathname]);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-[#090a0d]/90 backdrop-blur-xl">
+      <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-5 sm:px-8">
+        <Logo size="md" />
+        <nav className="hidden items-center gap-1 md:flex">
+          {links.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>                 `rounded-lg px-3 py-2 text-sm transition ${isActive ? 'bg-white/[.07] text-white' : 'text-slate-400 hover:text-white'}`
+              }
+            >
+              {link.name}
+            </NavLink>
+          ))}
+          <a href="https://private.imtx.win" className={privateLinkClass}>
+            <Heart size={14} className="mr-1 inline-block" />
+            Ona Özel
+          </a>
+        </nav>
+        <div className="hidden items-center gap-2 md:flex">
+          <Button to="/login" variant="ghost" size="sm">Giriş yap</Button>
+          <Button to="/register" variant="primary" size="sm">Başla</Button>
+        </div>
+        <button className="rounded-lg p-2 text-slate-300 md:hidden" onClick={() => setOpen(!open)} aria-label="Menüyü aç/kapat">
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <div className="border-t border-white/8 bg-[#090a0d] px-5 py-4 md:hidden">
+          <nav className="grid gap-1">
+            {links.map((link) => (
+              <NavLink key={link.path} to={link.path} className="rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-white/[.06]">
+                {link.name}
+              </NavLink>
+            ))}
+            <a href="https://private.imtx.win" className="rounded-lg px-3 py-3 text-sm font-medium text-sky-300 hover:bg-sky-400/10 hover:text-white">
+              <Heart size={14} className="mr-2 inline-block" />
+              Ona Özel
+            </a>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <Button to="/login" variant="secondary" size="sm">Giriş yap</Button>
+              <Button to="/register" variant="primary" size="sm">Başla</Button>
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
